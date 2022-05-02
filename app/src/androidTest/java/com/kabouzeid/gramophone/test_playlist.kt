@@ -102,6 +102,21 @@ class test_playlist_create {
 
 
     }
+    @Test
+
+    fun test_cancel_delete_track_from_playlist(){
+        onView(withText("HOLLY_MARY")).check(matches(isDisplayed()))
+        onView(withText("HOLLY_MARY")).perform(click())
+        Thread.sleep(5000)
+        onData(allOf())
+                .inRoot(RootMatchers.isPlatformPopup())
+                .atPosition(0)
+                .perform(click())
+        onView(withText("CANCEL"))
+                .perform(click())
+        //Check what displayed
+
+    }
 
     @Test
 
@@ -113,6 +128,12 @@ class test_playlist_create {
                 .inRoot(RootMatchers.isPlatformPopup())
                 .atPosition(0)
                 .perform(click())
+        onView(withText("REMOVE"))
+                .perform(click())
+        Thread.sleep(1000)
+        onView(withText("Empty playlist")).check(matches(isDisplayed()))
+        //check what deleted
+
     }
     //Check is not displayed
 
@@ -154,9 +175,24 @@ class test_playlist_create {
 
 
     }
+    @Test
+    fun test_cancel_delete_playlist() {
+        onView(withText("Test_rename")).check(matches(isDisplayed()))
+        Thread.sleep(5000)
+        //dropdown open
+        onData(allOf())
+                .inRoot(RootMatchers.isPlatformPopup())
+                .atPosition(5)
+                .perform(click())
+
+        onView(withText("CANCEL"))
+                .perform(click())
+        Thread.sleep(1000)
+        onView(withText("Test_rename")).check(matches(isDisplayed()))
+    }
 
     @Test
-    fun button_click(){
+    fun test_delete_playlist(){
         onView(withText("Test_rename")).check(matches(isDisplayed()))
         Thread.sleep(5000)
         //dropdown open
